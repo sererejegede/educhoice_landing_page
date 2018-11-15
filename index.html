@@ -162,8 +162,7 @@
 
 							<div class="contact-form-result"></div>
 
-							<form class="nobottommargin" id="template-contactform" name="template-contactform" action="include/sendemail.php"
-							 method="post">
+							<form class="nobottommargin" method="post">
 
 								<div class="form-process" id="spinner"></div>
 
@@ -190,7 +189,7 @@
 								</div>
 
 								<div class="col_full">
-									<button class="button button-3d nomargin" id="form_submit"> Send Message </button>
+									<button class="button button-3d nomargin" id="form_submit" type="button"> Submit </button>
 								</div>
 
 							</form>
@@ -219,7 +218,7 @@
 								<div class="fbox-icon">
 									<a href="#"><i class="icon-map-marker2"></i></a>
 								</div>
-								<h3>Our Headquarters<span class="subtitle">ASSBIFI House, Ikeja, Lagos</span></h3>
+								<h3>Our Headquarters<span class="subtitle">​ASSBIFI House (2nd Floor), 4 ASSBIFI Road, Alausa CBD, Ikeja, Lagos.</span></h3>
 							</div>
 						</div>
 
@@ -348,19 +347,19 @@
 				$('#success_response').removeClass('hidden fadeOut').css({visibility: 'visible'}).addClass('animated fadeIn custom-alert');
 				$('#spinner').css({display: 'none'});
 			}, 2000);
-			// $.ajax({
-   //         url: "contact.php",
-   //         type: "post",
-   //         data: {
-   //             name: name,
-   //             email: email,
-   //             phone: phonel,
-   //             school: school
-   //         },
-   //         success: function(res){
-   //             console.log(res)
-   //         }
-   //     });
+			$.ajax({
+           url: "contact.php",
+           type: "post",
+           data: {
+               name: name,
+               email: email,
+               phone: phone,
+               school: school
+           },
+           success: function(res){
+               console.log(res)
+           }
+       });
 		});
 		function hideMessage () {
 			$('#success_response').addClass('fadeOut');
