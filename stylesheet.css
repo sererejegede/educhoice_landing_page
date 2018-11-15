@@ -15,3 +15,7 @@
 .hidden {
 	visibility: hidden;
 }
+
+.text-white {
+    color: #fff;
+}
