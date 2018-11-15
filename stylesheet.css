@@ -1,0 +1,17 @@
+.custom-alert {
+	background-color: #1ABC9C;
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+.float-right {
+	float: right !important;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.hidden {
+	visibility: hidden;
+}
