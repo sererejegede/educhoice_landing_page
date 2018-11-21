@@ -12,6 +12,7 @@
 	 rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="stylesheet.css" type="text/css" />
 	<link rel="stylesheet" href="css/dark.css" type="text/css" />
 	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
 	<link rel="stylesheet" href="css/animate.css" type="text/css" />
@@ -255,8 +256,7 @@
 
 							<div class="contact-form-result"></div>
 
-							<form class="nobottommargin" id="template-contactform" name="template-contactform" action="include/sendemail.php"
-							 method="post">
+							<form class="nobottommargin" method="post">
 
 								<div class="form-process"></div>
 
@@ -294,6 +294,15 @@
 
 					</div><!-- Contact Form End -->
 
+					<div class="col_half col_last">
+						<div class="feature-box fbox-plain hidden" id="success_response">
+							<h3 class="text-white">
+								<b id="success_response_h3">Message sent successfully</b>
+								<i class="float-right cursor-pointer" onclick="hideMessage()">&times;</i>
+							</h3>
+							<!-- <p>Change your Website's Primary Scheme instantly by simply adding the dark class to the body.</p> -->
+						</div>
+					</div>
 
 					<!-- Contact Info
 					============================================= -->
@@ -421,6 +430,44 @@
 	============================================= -->
 	<script src="js/functions.js"></script>
 	<script src="js/jquery.gmap.js"></script>
+	<script type="text/javascript">
+		$('#form_submit').click(function () {
+      const name = $('#name').val();
+      const email = $('#email').val();
+      const phone = $('#phone').val();
+      const school = $('#school').val();
+      $('#spinner').css({display: 'block'});
+
+			$.ajax({
+           url: "https://ws.educhoicetest.com.ng/api/send_mail",
+           type: "post",
+           data: {
+               name: name,
+               email: email,
+               phone: phone,
+               school: school
+           },
+           success: function(res){
+                $('#spinner').css({display: 'none'});
+                if (res.toString() === 'true') {
+                   $('#success_response').removeClass('hidden fadeOut').css({visibility: 'visible'}).addClass('animated fadeIn custom-alert');
+                   document.getElementById('form_i').reset();
+               } else {
+                   $('#success_response_h3').text('Could not send message');
+                   $('#success_response').removeClass('hidden fadeOut').css({visibility: 'visible'}).addClass('animated fadeIn custom-alert');
+               }
+           },
+           error: function (err) {
+               $('#spinner').css({display: 'none'});
+                $('#success_response_h3').text('Could not send message');
+                   $('#success_response').removeClass('hidden fadeOut').css({visibility: 'visible', 'background-color': '#C02942'}).addClass('animated fadeIn custom-alert');
+           }
+       });
+		});
+		function hideMessage () {
+			$('#success_response').addClass('fadeOut');
+		}
+	</script>
 
 
 </body>
